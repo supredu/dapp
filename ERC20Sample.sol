@@ -108,21 +108,21 @@ contract ERC20 is IERC20 {
     mapping(address => mapping(address => uint256)) private _allowances;
     uint256 private _totalSupply;
     uint256 private _totalTransfer;
-    address owner;
+    address _owner;
 
     constructor(   
         string memory _name,
         string memory _symbol,
         uint8 _decimals
     ) {
-        owner = msg.sender;
+        _owner = msg.sender;
         name = _name;
         symbol = _symbol;
         decimals = _decimals;
     }
 
     modifier onlyOwner {
-      require(msg.sender == owner); 
+      require(msg.sender == _owner); 
       _; 
    }
     function totalSupply() public view override returns (uint256) {
